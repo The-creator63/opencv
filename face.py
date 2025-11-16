@@ -16,5 +16,10 @@ for i in range(1,30):
     for x,y,w,h in face:
         cv2.rectangle(image,(x,y),(x+w,y+h),(255,0,0),2)
         faces =  img_grey[y:y+h,x:x+w]
+        faces2 = cv2.resize(faces,(width,height))
+        cv2.imwrite("%s/%s.png"%(path_save,i),faces2)
+    image2 = cv2.imshow("image",image)
+    key = cv2.waitKey(10)
+    if key == 27:
+        break
     
-    cv2.waitKey(0)
