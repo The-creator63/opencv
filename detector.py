@@ -33,9 +33,12 @@ while True:
         cv2.rectangle(image,(x,y),(x+w,y+h),(255,0,0),2)
         faces =  img_grey[y:y+h,x:x+w]
         faces2 = cv2.resize(faces,(130,100))
-        result = model.predict(faces2)
-        print(result)
-    cv2.imshow("image",image)
+        result,result2 = model.predict(faces2)
+        if result2 <78:
+            nresult = names[result]
+            cv2.putText(image,nresult,(x,y-20),cv2.FONT_HERSHEY_COMPLEX,1,(255,0,0))
+        print(result,result2)
+    cv2.imshow("Image",image)
     key = cv2.waitKey(10)
     if key == 27:
          break
